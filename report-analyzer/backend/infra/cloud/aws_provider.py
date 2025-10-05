@@ -1,5 +1,6 @@
 import boto3
-from .base import CloudProvider
+from cloud.base import CloudProvider
+from typing import Dict, Any, BinaryIO
 
 class AWSProvider(CloudProvider):
     def __init__(self, config: Dict[str, Any]):

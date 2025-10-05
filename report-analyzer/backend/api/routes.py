@@ -1,8 +1,8 @@
 from fastapi import FastAPI, UploadFile, File, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from ..core.services.analysis_service import AnalysisService
-from ..core.services.cloud_ai_service import CloudAIServiceFactory
-from ..config.settings import Settings
+from core.services import AnalysisService
+from core.ai import CloudAIServiceFactory
+from config import Settings
 
 app = FastAPI()
 
@@ -44,3 +44,11 @@ async def analyze_query(
     service: AnalysisService = Depends(get_analysis_service)
 ):
     return await service.process_query(query, doc_id)
+
+@app.get("/health")
+async def health_check():
+    return {"status": "healthy"}
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8080)

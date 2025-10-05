@@ -4,7 +4,7 @@ from langchain.agents import AgentExecutor
 from langchain.agents.openai_functions_agent.base import OpenAIFunctionsAgent
 from langchain.prompts import ChatPromptTemplate
 from langchain_core.messages import SystemMessage
-from ..workflows.analysis_graph import GraphState, AnalysisGraph
+from core.workflows import GraphState, AnalysisGraph
 
 class AnalysisService:
     def __init__(self, llm, tools, vector_store):

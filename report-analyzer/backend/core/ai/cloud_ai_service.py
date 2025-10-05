@@ -3,7 +3,7 @@ from typing import Dict, Any, List
 from langchain_core.messages import BaseMessage
 import json
 import google.cloud.aiplatform as vertex_ai
-from google.cloud.aiplatform.prediction_service import PredictionServiceClient
+from google.cloud.aiplatform.gapic import PredictionServiceClient
 from azure.ai.textanalytics import TextAnalyticsClient
 import boto3
 

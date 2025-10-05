@@ -1,8 +1,8 @@
 from typing import Dict, List, Any
 from langchain_core.messages import BaseMessage, HumanMessage
-from langgraph.graph import Graph, StateGraph
+from langgraph.graph.state import CompiledStateGraph, StateGraph
 from pydantic import BaseModel
-from ..services.cloud_ai_service import CloudAIServiceFactory
+from core.ai import CloudAIServiceFactory
 
 class GraphState(BaseModel):
     messages: List[BaseMessage]
@@ -40,7 +40,7 @@ class AnalysisGraph:
             state.context['error'] = str(e)
             return state
 
-    def _create_workflow(self) -> Graph:
+    def _create_workflow(self) -> CompiledStateGraph:
         workflow = StateGraph(GraphState)
         
         # Add nodes

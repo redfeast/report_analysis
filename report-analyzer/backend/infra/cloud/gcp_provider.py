@@ -1,7 +1,7 @@
 from typing import Dict, Any, BinaryIO
 from google.cloud import storage
 from google.cloud import aiplatform
-from .base import CloudProvider
+from infra.cloud import CloudProvider
 
 class GCPProvider(CloudProvider):
     def __init__(self, config: Dict[str, Any]):
@@ -20,7 +20,7 @@ class GCPProvider(CloudProvider):
     
     async def download_file(self, path: str) -> BinaryIO:
         blob = self.bucket.blob(path)
-        file_obj = BytesIO()
+        file_obj = BinaryIO()
         blob.download_to_file(file_obj)
         file_obj.seek(0)
         return file_obj
