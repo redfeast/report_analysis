@@ -1,0 +1,30 @@
+cloud:
+  provider: aws  # aws, azure, or gcp
+  aws:
+    region: us-west-2
+    access_key_id: ${AWS_ACCESS_KEY_ID}
+    secret_access_key: ${AWS_SECRET_ACCESS_KEY}
+    bucket: report-analyzer
+  azure:
+    connection_string: ${AZURE_CONNECTION_STRING}
+    ai_endpoint: ${AZURE_AI_ENDPOINT}
+    ai_key: ${AZURE_AI_KEY}
+    container_name: reports
+  gcp:
+    project_id: ${GCP_PROJECT_ID}
+    location: us-central1
+    bucket: report-analyzer
+
+vector_store:
+  type: faiss
+  path: vector_store
+  dimension: 1536
+  metric: cosine
+
+tools:
+  web_search:
+    type: duckduckgo
+    timeout: 30
+  doc_search:
+    type: vector_store
+    top_k: 5
